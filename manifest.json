@@ -1,10 +1,12 @@
 {
   "short_name": "Clima",
   "name": "App de Previsão do Tempo",
-  "start_url": "/",
+  "description": "Consulte a previsão do tempo de qualquer cidade com visual moderno e suporte offline.",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#121212",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/icons/icon-192.png",
