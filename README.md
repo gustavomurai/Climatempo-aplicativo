@@ -33,16 +33,16 @@ Este repositório contém um aplicativo web de **previsão do tempo** com funcio
 ## 📁 Estrutura do Projeto
 
 📦 Climatempo-aplicativo
-├── app.js
-├── index.html
-├── manifest.json
-├── service-worker.js
-├── style.css
-├── creditos.txt
-└── icones/
-├── icon-192.png
-└── icon-512.png
+-------------------------
+- `index.html` ............... Página principal da interface  
+- `style.css` ................ Estilização com suporte ao modo escuro  
+- `app.js` ................... Lógica de busca climática, mapa e previsão  
+- `manifest.json` ............ Configurações do PWA (nome, ícones, cores)  
+- `service-worker.js` ........ Cache de arquivos para navegação offline  
+- `/icones/` ................. Pasta com ícones usados no manifesto  
+- `creditos.txt` ............. Documento com os créditos do projeto
 
+---
 ---
 
 ## 📱 Instalação como App (PWA)
