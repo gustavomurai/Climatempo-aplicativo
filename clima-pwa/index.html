@@ -1,0 +1,86 @@
+<!--
+  Projeto criado por Gustavo Murai.
+  Código protegido por direitos autorais. Proibido copiar, distribuir ou modificar sem permissão.
+  Portfólio:
+    GitHub - https://github.com/gustavomurai
+    Behance - https://www.behance.net/Muraiart
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Previsão do Tempo 🌤️</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <button id="toggleModo" class="modo-claro">🌙 Modo Noturno</button>
+
+  <div class="container">
+    <h1>🌤️ Previsão do Tempo</h1>
+    <input type="text" id="cidade" placeholder="Digite a cidade..." />
+    <button id="buscarBtn">Buscar</button>
+    <div id="resultado"></div>
+    <div id="mapa"></div>
+  </div>
+
+  <!-- Botão de instalação PWA -->
+  <button id="installBtn" style="display:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;">Instalar App</button>
+
+  <footer>
+    <p>🔒 Código desenvolvido por <strong>Gustavo Murai</strong>. Todos os direitos reservados.</p>
+    <p>GitHub: <a href="https://github.com/gustavomurai" target="_blank">https://github.com/gustavomurai</a></p>
+    <p>Portfolio: <a href="https://www.behance.net/Muraiart" target="_blank">https://www.behance.net/Muraiart</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Adicionando o EventListener para o botão de busca
+    document.getElementById('buscarBtn').addEventListener('click', buscarClima);
+
+    // Instalação do PWA
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+
+    installBtn.addEventListener('click', () => {
+      installBtn.style.display = 'none';
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuário aceitou instalar o app');
+        } else {
+          console.log('Usuário recusou');
+        }
+        deferredPrompt = null;
+      });
+    });
+  </script>
+
+  <style>
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    footer a {
+      color: #adf5ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</body>
+</html>

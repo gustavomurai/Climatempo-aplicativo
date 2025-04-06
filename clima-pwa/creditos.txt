@@ -1,0 +1,69 @@
+
+Créditos do Projeto de Clima com Modo Noturno e Mapa
+====================================================
+
+👤 Desenvolvido por: Gustavo Cerqueira Murai
+📅 Data de finalização: 06/04/2025
+
+---
+
+🔧 Tecnologias e Ferramentas Utilizadas:
+---------------------------------------
+- HTML5
+- CSS3
+- JavaScript (puro, sem frameworks)
+- Leaflet.js (para exibição de mapas interativos)
+- API OpenWeatherMap (dados meteorológicos e previsão do tempo)
+- MapTiler (tiles de mapas para tema claro e escuro)
+- Visual Studio Code (ambiente de desenvolvimento)
+- GitHub e GitHub Pages (hospedagem gratuita do site)
+- Ícones personalizados para Progressive Web App (PWA)
+- Serviço de Live Server (para testes locais)
+- PWA: adicionado manifesto e service worker para uso como aplicativo instalável
+
+---
+
+📂 Estrutura de Arquivos:
+--------------------------
+- index.html ............... Página principal com a interface
+- style.css ................ Estilo do site com suporte a tema escuro
+- app.js ................... Lógica de busca de clima, mapa e previsão
+- manifest.json ............ Informações do PWA (nome, ícones, cor)
+- service-worker.js ........ Cache de arquivos para navegação offline
+- /icones/ ................. Pasta com os ícones usados no manifesto
+- creditos.txt ............. Este documento com os créditos
+
+---
+
+🛠️ Processo de Criação:
+------------------------
+1. Início do projeto com HTML básico contendo input e botão de busca.
+2. Estilização com CSS, incluindo o botão de alternância entre modo claro e escuro.
+3. Desenvolvimento do JavaScript:
+   - Validação do input da cidade.
+   - Consulta à API do OpenWeatherMap para clima atual e previsão.
+   - Exibição dinâmica das informações meteorológicas.
+   - Conversão de timestamp para horário local.
+   - Previsão de 4 dias com ícones e temperaturas mín/max.
+4. Integração com Leaflet.js para exibir mapas centralizados na cidade buscada.
+5. Implementação de tiles personalizados da MapTiler para modo claro e escuro.
+6. Implementação do modo escuro com alternância de camadas de mapa.
+7. Criação de `manifest.json` para tornar o site um PWA.
+8. Criação de `service-worker.js` para permitir acesso offline aos arquivos básicos.
+9. Testes com Live Server e dispositivos móveis.
+10. Upload para GitHub e ativação do GitHub Pages para hospedagem pública.
+
+---
+
+🔒 Direitos Autorais:
+---------------------
+Este projeto é de autoria de Gustavo Murai. Todo o código e design foram criados manualmente com dedicação. Está protegido por direitos autorais.
+
+Por favor, não copie ou distribua sem permissão.
+
+---
+
+🔗 Portfólio:
+-------------
+- GitHub: https://github.com/gustavomurai
+- Behance: https://www.behance.net/Muraiart

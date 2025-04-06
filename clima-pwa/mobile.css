@@ -1,0 +1,14 @@
+body {
+    background-color: #f0f0f0;
+    font-size: 16px;
+  }
+  
+  .container {
+    width: 95%;
+  }
+  
+  button {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
