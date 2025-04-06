@@ -4,27 +4,27 @@ GitHub: https://github.com/gustavomurai
 Behance: https://www.behance.net/Muraiart
 */
 
-
-
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom right, #3493be, #1688e6); /* Cor de fundo inicial */
+  background: linear-gradient(to bottom right, #3493be, #1688e6);
   color: white;
   text-align: center;
   padding: 50px;
   min-height: 100vh;
   margin: 0;
-  transition: background 3s ease-in-out; /* Transição suave de 3 segundos para o fundo */
+  transition: background 3s ease-in-out, color 0.3s ease;
 }
 
 .container {
   max-width: 550px;
+  width: 90%;
   margin: auto;
   background-color: rgba(11, 73, 97, 0.15);
   padding: 20px;
   border-radius: 15px;
   border: 2px solid rgb(171, 224, 255);
   box-shadow: 0 4px 10px rgba(0, 39, 71, 0.2);
+  transition: all 0.3s ease;
 }
 
 input {
@@ -35,6 +35,11 @@ input {
   border: none;
   outline: none;
   box-shadow: 0 2px 5px rgba(110, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #333;
 }
 
 button {
@@ -45,7 +50,7 @@ button {
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s ease;
 }
 
 button:hover {
@@ -64,7 +69,7 @@ button:hover {
   gap: 1px;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding-bottom: auto;
+  padding-bottom: 10px;
 }
 
 #previsao > div {
@@ -75,6 +80,7 @@ button:hover {
   border: 2px solid rgb(85, 175, 226);
   min-width: 100px;
   flex: 0 0 auto;
+  transition: all 0.3s ease;
 }
 
 #mapa {
@@ -106,8 +112,12 @@ body.modo-escuro #mapa {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+#toggleModo:hover {
+  background-color: #2370b0;
+}
+
 body.modo-escuro {
-  background: linear-gradient(to bottom right, #0b1a2a, #112f4d); /* Cor de fundo do modo escuro */
+  background: linear-gradient(to bottom right, #0b1a2a, #112f4d);
   color: #fcf8f8;
 }
 
@@ -127,12 +137,10 @@ body.modo-escuro input {
   border: none;
 }
 
+body.modo-escuro input::placeholder {
+  color: #bbb;
+}
+
 body.modo-escuro #previsao > div {
   background-color: rgba(3, 3, 3, 0.5);
 }
-
-body.modo-escuro input::placeholder {
-  color: #bbb; /* Cor do texto placeholder no modo escuro */
-}
-
-

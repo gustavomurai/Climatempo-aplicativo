@@ -1,8 +1,9 @@
+// ✅ app.js carregado
+console.log('✅ app.js carregado');
+
 // Este código foi desenvolvido por Gustavo Cerqueira Murai.
 // GitHub: https://github.com/gustavomurai
 // Behance: https://www.behance.net/Muraiart
-
-
 
 document.getElementById('toggleModo').addEventListener('click', function () {
   document.body.classList.toggle('modo-escuro');
@@ -33,7 +34,6 @@ async function buscarClima() {
   }
 
   try {
-    // API Key agora sendo utilizada diretamente
     const apiKey = '170f8c5a27df7f7ce5a66e6c6b557760'; // Coloque sua chave API aqui
     const geocodeUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiKey}&lang=pt_br&units=metric`;
 
@@ -66,14 +66,14 @@ async function buscarClima() {
     });
 
     let previsaoHTML = `
-        <h2>${dadosGeocode.name}, ${dadosGeocode.sys.country}</h2>
-        <img src="${iconeClima}" alt="Ícone do clima">
-        <p style="margin-top: -10px;">${descricao.charAt(0).toUpperCase() + descricao.slice(1)}</p>
-        <p>🌡️ Temperatura: ${temperatura.toFixed(1)}°C</p>
-        <p>💧 Umidade: ${umidade}%</p>
-        <p>💨 Vento: ${vento} m/s</p>
-        <p>🕒 Horário local: ${horarioFormatado}</p>
-        <div id="previsao">
+      <h2>${dadosGeocode.name}, ${dadosGeocode.sys.country}</h2>
+      <img src="${iconeClima}" alt="Ícone do clima">
+      <p style="margin-top: -10px;">${descricao.charAt(0).toUpperCase() + descricao.slice(1)}</p>
+      <p>🌡️ Temperatura: ${temperatura.toFixed(1)}°C</p>
+      <p>💧 Umidade: ${umidade}%</p>
+      <p>💨 Vento: ${vento} m/s</p>
+      <p>🕒 Horário local: ${horarioFormatado}</p>
+      <div id="previsao">
     `;
 
     const previsoesPorDia = {};
@@ -110,12 +110,12 @@ async function buscarClima() {
       const { tempMax, tempMin, icone } = previsoesPorDia[dia];
 
       previsaoHTML += `
-          <div>
-              <p><strong>${dia}</strong></p>
-              <img src="https://openweathermap.org/img/wn/${icone}@2x.png" alt="Ícone do clima" style="width: 50px; height: 50px;">
-              <p>↑ ${tempMax.toFixed(1)}°C</p>
-              <p>↓ ${tempMin.toFixed(1)}°C</p>
-          </div>
+        <div>
+          <p><strong>${dia}</strong></p>
+          <img src="https://openweathermap.org/img/wn/${icone}@2x.png" alt="Ícone do clima" style="width: 50px; height: 50px;">
+          <p>↑ ${tempMax.toFixed(1)}°C</p>
+          <p>↓ ${tempMin.toFixed(1)}°C</p>
+        </div>
       `;
       count++;
     }
@@ -140,14 +140,12 @@ async function buscarClima() {
       mapa.setView([lat, lon], 10);
     }
 
-    // Atualiza o marcador
     if (marcador) {
       marcador.setLatLng([lat, lon]);
     } else {
       marcador = L.marker([lat, lon]).addTo(mapa);
     }
 
-    // Atualiza camada de mapa conforme tema atual
     const modoEscuroAtivo = document.body.classList.contains('modo-escuro');
     alternarModoMapa(modoEscuroAtivo);
 
@@ -176,3 +174,5 @@ window.addEventListener('offline', () => {
 window.addEventListener('online', () => {
   alert("Conexão restaurada!");
 });
+
+document.getElementById('buscarBtn').addEventListener('click', buscarClima);
