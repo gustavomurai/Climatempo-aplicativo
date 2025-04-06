@@ -2,7 +2,7 @@
 
 Este repositório contém um aplicativo web de **previsão do tempo** com funcionalidades modernas, como **modo claro/escuro**, **geolocalização com mapa interativo** e suporte **PWA (Progressive Web App)** — tudo desenvolvido com carinho por **Gustavo Murai**. 🧠💻
 
-👉 **[Acesse aqui o app](https://gustavomurai.github.io/Climatempo-aplicativo/)**
+👉 **[Acesse aqui o aplicativo](https://gustavomurai.github.io/Climatempo-aplicativo/)**
 
 ---
 
