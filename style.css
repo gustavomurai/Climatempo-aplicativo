@@ -1,0 +1,138 @@
+/* 
+Este código foi desenvolvido por Gustavo Cerqueira Murai.
+GitHub: https://github.com/gustavomurai
+Behance: https://www.behance.net/Muraiart
+*/
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #3493be, #1688e6); /* Cor de fundo inicial */
+  color: white;
+  text-align: center;
+  padding: 50px;
+  min-height: 100vh;
+  margin: 0;
+  transition: background 3s ease-in-out; /* Transição suave de 3 segundos para o fundo */
+}
+
+.container {
+  max-width: 550px;
+  margin: auto;
+  background-color: rgba(11, 73, 97, 0.15);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid rgb(171, 224, 255);
+  box-shadow: 0 4px 10px rgba(0, 39, 71, 0.2);
+}
+
+input {
+  padding: 10px;
+  width: 70%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(110, 0, 0, 0.2);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: white;
+  color: #000000;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #e0f7fa;
+}
+
+#resultado img {
+  width: 80px;
+  height: 80px;
+}
+
+#previsao {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 1px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: auto;
+}
+
+#previsao > div {
+  text-align: center;
+  background-color: rgba(40, 102, 173, 0.342);
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid rgb(85, 175, 226);
+  min-width: 100px;
+  flex: 0 0 auto;
+}
+
+#mapa {
+  display: none;
+  margin-top: 30px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid white;
+  transition: border 0.3s ease;
+}
+
+body.modo-escuro #mapa {
+  border: 2px solid hsl(209, 47%, 48%);
+}
+
+#toggleModo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #195688;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 9999;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.modo-escuro {
+  background: linear-gradient(to bottom right, #0b1a2a, #112f4d); /* Cor de fundo do modo escuro */
+  color: #fcf8f8;
+}
+
+body.modo-escuro .container {
+  background-color: rgba(7, 9, 43, 0.4);
+  border-color: #14436e;
+}
+
+body.modo-escuro #toggleModo {
+  background-color: #22497c;
+  color: #c7f4ff;
+}
+
+body.modo-escuro input {
+  background-color: #0e0909;
+  color: #ffffff;
+  border: none;
+}
+
+body.modo-escuro #previsao > div {
+  background-color: rgba(3, 3, 3, 0.5);
+}
+
+body.modo-escuro input::placeholder {
+  color: #bbb; /* Cor do texto placeholder no modo escuro */
+}
+
+
