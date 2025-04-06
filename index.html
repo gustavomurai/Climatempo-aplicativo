@@ -11,23 +11,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#121212" />
+  <meta name="description" content="Consulte a previsão do tempo de qualquer cidade com visual moderno e suporte offline. Desenvolvido por Gustavo Murai.">
+  
   <title>Previsão do Tempo 🌤️</title>
+
+  <!-- CSS externo -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Ícones e Manifest -->
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="icons/icon-192.png" type="image/png" />
+  <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
 </head>
 <body>
-  <button id="toggleModo" class="modo-claro">🌙 Modo Noturno</button>
+  <noscript>
+    <p style="color: red; text-align: center;">
+      Este site precisa do JavaScript habilitado para funcionar corretamente.
+    </p>
+  </noscript>
+
+  <button id="toggleModo" class="modo-claro" aria-label="Ativar modo noturno">🌙 Modo Noturno</button>
 
   <div class="container">
     <h1>🌤️ Previsão do Tempo</h1>
+    
+    <label for="cidade" class="sr-only">Cidade</label>
     <input type="text" id="cidade" placeholder="Digite a cidade..." />
-    <button id="buscarBtn">Buscar</button>
-    <div id="resultado"></div>
+    
+    <button id="buscarBtn" aria-label="Buscar previsão do tempo">Buscar</button>
+    
+    <div id="resultado" aria-live="polite">
+      <p>Digite uma cidade e clique em "Buscar" para ver a previsão.</p>
+    </div>
+
     <div id="mapa"></div>
   </div>
-
-  <!-- Botão de instalação PWA -->
-  <button id="installBtn" style="display:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;">Instalar App</button>
 
   <footer>
     <p>🔒 Código desenvolvido por <strong>Gustavo Murai</strong>. Todos os direitos reservados.</p>
@@ -35,36 +55,65 @@
     <p>Portfolio: <a href="https://www.behance.net/Muraiart" target="_blank">https://www.behance.net/Muraiart</a></p>
   </footer>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="app.js"></script>
-  <script>
-    // Adicionando o EventListener para o botão de busca
-    document.getElementById('buscarBtn').addEventListener('click', buscarClima);
+  <!-- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
 
-    // Instalação do PWA
+  <!-- Script do app -->
+  <script src="app.js" defer></script>
+
+  <!-- Registro do Service Worker -->
+  <script>
+    window.onload = () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('✅ Service Worker registrado com sucesso:', reg.scope))
+          .catch(err => console.error('❌ Falha ao registrar o Service Worker:', err));
+      }
+    };
+  </script>
+
+  <!-- Botão de instalação PWA -->
+  <script>
     let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
+    const installBtn = document.createElement('button');
+    installBtn.textContent = "📲 Instalar App";
+    installBtn.setAttribute('aria-label', 'Instalar o aplicativo no dispositivo');
+    Object.assign(installBtn.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      padding: '10px 20px',
+      background: '#1d3557',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '8px',
+      cursor: 'pointer',
+      display: 'none',
+      zIndex: '9999'
+    });
+    document.body.appendChild(installBtn);
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
       installBtn.style.display = 'block';
-    });
 
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('Usuário aceitou instalar o app');
-        } else {
-          console.log('Usuário recusou');
-        }
-        deferredPrompt = null;
+      installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('Usuário aceitou a instalação!');
+          } else {
+            console.log('Usuário recusou a instalação.');
+          }
+          deferredPrompt = null;
+        });
       });
     });
   </script>
 
+  <!-- Estilos extras -->
   <style>
     footer {
       text-align: center;
@@ -80,6 +129,14 @@
 
     footer a:hover {
       text-decoration: underline;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
   </style>
 </body>
