@@ -30,7 +30,7 @@ body {
 input {
   padding: 10px;
   width: 70%;
-  margin-bottom: 10px;
+  
   border-radius: 3px;
   border: none;
   outline: none;
@@ -43,14 +43,16 @@ input::placeholder {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 15px;
+  height: 44px;
   background-color: white;
-  color: #000000;
+  color: #3a5d85;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s, transform 0.3s, color 0.3s ease;
+  box-sizing: border-box;
 }
 
 button:hover {
@@ -77,7 +79,7 @@ button:hover {
   background-color: rgba(40, 102, 173, 0.342);
   padding: 10px;
   border-radius: 8px;
-  border: 2px solid rgb(85, 175, 226);
+  border: 2px solid rgb(85, 175, 226); /* Cor da borda no modo claro */
   min-width: 100px;
   flex: 0 0 auto;
   transition: all 0.3s ease;
@@ -89,13 +91,14 @@ button:hover {
   height: 300px;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid white;
+  border: 2px solid white; /* Borda no modo claro */
   transition: border 0.3s ease;
 }
 
 body.modo-escuro #mapa {
-  border: 2px solid hsl(209, 47%, 48%);
+  border: 2px solid hsl(209, 49%, 34%); /* Borda no modo escuro */
 }
+
 
 #toggleModo {
   position: absolute;
@@ -132,7 +135,7 @@ body.modo-escuro #toggleModo {
 }
 
 body.modo-escuro input {
-  background-color: #0e0909;
+  background-color: #214a79;
   color: #ffffff;
   border: none;
 }
@@ -143,4 +146,174 @@ body.modo-escuro input::placeholder {
 
 body.modo-escuro #previsao > div {
   background-color: rgba(3, 3, 3, 0.5);
+  border: 2px solid #1b5483; /* Cor da borda no modo escuro */
+}
+
+#localizacaoBtn {
+  height: 50px; /* igual ao input */
+  padding: 12px 18px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#localizacaoBtn:hover {
+  background-color: #111;
+}
+
+#localizacaoBtn svg {
+  fill: red;
+}
+
+body.modo-escuro #localizacaoBtn {
+  background-color: #3f1919;
+}
+
+.busca-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: stretch; /* ✅ Adicione essa linha */
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+
+.busca-container input {
+  flex: 1;
+  min-width: 300px; /* 🔼 aumentei de 200px pra 300px */
+  padding: 12px 18px; /* 🔼 mais espaçamento interno */
+  height: 50px; /* 🔼 altura um pouco maior */
+  font-size: 18px; /* 🔼 texto maior */
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(110, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+
+#localizacaoBtn {
+  background-color: #13537e;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+#localizacaoBtn:hover {
+  background-color: #333;
+}
+
+body.modo-escuro #localizacaoBtn {
+  background-color: hsl(212, 61%, 32%);
+}
+
+body.modo-escuro #localizacaoBtn:hover {
+  background-color: #3e78a8;
+}
+
+.busca-container button,
+.busca-container #localizacaoBtn {
+  flex: 1;
+  height: 50px;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Lista de sugestões */
+
+
+.campo-com-sugestoes {
+  flex: 2;
+  position: relative;
+}
+
+#sugestoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  color: rgb(235, 60, 60);
+  width: 100%; /* ✅ Agora 100% da .campo-com-sugestoes (que tem 70% do container) */
+  left: 0;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#sugestoes:has(li) {
+  display: block;
+}
+
+#sugestoes li {
+  padding: 10px;
+  border-bottom: 1px solid #0f4c5c54;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: rgb(52, 95, 145);
+  background-color: white;
+}
+
+#sugestoes li:last-child {
+  border-bottom: none;
+}
+
+#sugestoes li:hover,
+#sugestoes li:focus {
+  background-color: #f0f0f0;
+}
+
+body.modo-escuro #sugestoes {
+  background-color: #0c294e;
+  color: white;
+  border-color: #1b5483;
+}
+
+body.modo-escuro #sugestoes li {
+  background-color: #103157;
+  color: rgb(230, 245, 255);
+}
+
+body.modo-escuro #sugestoes li:hover {
+  background-color: #222;
+}
+
+body.modo-escuro .busca-container button {
+  background-color: #214a79;
+  color: #b8ebff;
+}
+
+body.modo-escuro .busca-container button:hover {
+  background-color: #172f49;
+  color: #daf3ff;
 }

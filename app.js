@@ -176,3 +176,84 @@ window.addEventListener('online', () => {
 });
 
 document.getElementById('buscarBtn').addEventListener('click', buscarClima);
+
+document.getElementById("localizacaoBtn").addEventListener("click", () => {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        const apiKey = "170f8c5a27df7f7ce5a66e6c6b557760";
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&appid=${apiKey}`;
+
+        fetch(url)
+          .then((res) => res.json())
+          .then((dados) => {
+            const cidade = dados.name;
+            document.getElementById("cidade").value = cidade;
+            buscarClima(cidade); // usa a função já existente
+          })
+          .catch(() => {
+            alert("Não foi possível obter a previsão para sua localização.");
+          });
+      },
+      () => {
+        alert("Não foi possível acessar sua localização.");
+      }
+    );
+  } else {
+    alert("Geolocalização não suportada neste navegador.");
+  }
+});
+
+const sugestoesLista = document.getElementById('sugestoes');
+const campoCidade = document.getElementById('cidade');
+
+campoCidade.addEventListener('input', async () => {
+  const termo = campoCidade.value.trim();
+  if (termo.length < 3) {
+    sugestoesLista.innerHTML = '';
+    return;
+  }
+
+  try {
+    const resposta = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${termo}&limit=10&appid=170f8c5a27df7f7ce5a66e6c6b557760`);
+    const dados = await resposta.json();
+
+    // Prioriza cidades do Brasil primeiro e evita duplicatas
+    const vistas = new Set();
+    const unicos = dados.filter(cidade => {
+      const chave = `${cidade.name},${cidade.country}`;
+      if (vistas.has(chave)) return false;
+      vistas.add(chave);
+      return true;
+    });
+
+    const brasileiras = unicos.filter(c => c.country === 'BR');
+    const outras = unicos.filter(c => c.country !== 'BR');
+    const todas = [...brasileiras, ...outras].slice(0, 3); // Limita a 3 sugestões
+
+    sugestoesLista.innerHTML = '';
+    todas.forEach(cidade => {
+      const item = document.createElement('li');
+      item.textContent = `${cidade.name}, ${cidade.country}`;
+      item.setAttribute('role', 'option');
+      item.setAttribute('tabindex', 0);
+      item.addEventListener('click', () => {
+        campoCidade.value = `${cidade.name}, ${cidade.country}`;
+        sugestoesLista.innerHTML = '';
+      });
+      sugestoesLista.appendChild(item);
+    });
+  } catch (error) {
+    console.error('Erro ao buscar sugestões:', error);
+  }
+});
+
+
+// Fechar sugestões ao perder o foco
+document.addEventListener('click', (e) => {
+  if (!sugestoesLista.contains(e.target) && e.target !== campoCidade) {
+    sugestoesLista.innerHTML = '';
+  }
+});

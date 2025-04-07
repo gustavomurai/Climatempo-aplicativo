@@ -38,9 +38,29 @@
     <h1>🌤️ Previsão do Tempo</h1>
     
     <label for="cidade" class="sr-only">Cidade</label>
-    <input type="text" id="cidade" placeholder="Digite a cidade..." />
+    <div class="busca-container">
+      <div class="campo-com-sugestoes">
+        <input type="text" id="cidade" placeholder="Digite a cidade..." autocomplete="off" />
+        <ul id="sugestoes" class="sugestoes-lista" role="listbox" aria-label="Sugestões de cidade"></ul>
+      </div>
+      
+
     
-    <button id="buscarBtn" aria-label="Buscar previsão do tempo">Buscar</button>
+      <button id="buscarBtn" aria-label="Buscar previsão do tempo">Buscar</button>
+    
+      <button id="localizacaoBtn" aria-label="Usar minha localização" title="Usar minha localização">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 
+                   9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 
+                   11.5 12 11.5z"/>
+        </svg>
+      </button>
+    </div>
+    
+
+      
+    
+    
     
     <div id="resultado" aria-live="polite">
       <p>Digite uma cidade e clique em "Buscar" para ver a previsão.</p>
